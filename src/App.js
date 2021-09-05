@@ -1,5 +1,9 @@
 import axios from 'axios';
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Img from 'react-bootstrap/Image'
 
 class App extends React.Component {
 
@@ -43,17 +47,25 @@ class App extends React.Component {
     return (
       <>
         <h1>Location App</h1>
-        <form onSubmit={this.getLocationData}>
+
+        <Form onSubmit={this.locationHandler}>
+          <fieldset>
+            <input type='text' name='locationName' placeholder='Enter city name' />
+            <Button style={{ marginLeft: 13}} style={{backgroundColor: '#B61919' }} type='submit'>Search for Location</Button>
+          </fieldset>
+        </Form>
+
+        {/* <form className="form-box" onSubmit={this.getLocationData}>
           <input type='text' name='cityName' placeholder='Enter city name' />
-          <button type='submit'>Search for Location</button>
-        </form>
+          <button style={{ marginLeft: "5px" }} type='submit'></button>
+        </form> */}
 
         <p>Display name : {this.state.displayName}</p>
         <p>Lat : {this.state.lat}</p>
         <p>Lon : {this.state.lon}</p>
 
         {this.state.mapFlag &&
-          <img src={`https://maps.locationiq.com/v3/staticmap?key=pk.527d90a1a6e86da5efab2b12faf50980&center=${this.state.lat},${this.state.lon}`} alt='map' />}
+          <Img src={`https://maps.locationiq.com/v3/staticmap?key=pk.527d90a1a6e86da5efab2b12faf50980&center=${this.state.lat},${this.state.lon}& size=400x400`} alt='map' />}
 
         {this.state.displayError && <p>You Have an Error</p>}
 
